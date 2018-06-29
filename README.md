@@ -2,6 +2,12 @@
 
 # ElixirBench Runner
 
+[![Travis build](https://secure.travis-ci.org/tallysmartins/elixir-bench-runner.svg?branch=master
+"Build Status")](https://travis-ci.org/tallysmartins/elixir-bench-runner)
+
+[![Travis build](https://secure.travis-ci.org/elixir-bench/elixir-bench-runner.svg?branch=master
+"Build Status")](https://travis-ci.org/elixir-bench/elixir-bench-runner)
+
 This is an Elixir daemon that pulls for job our API and executes tests in `runner-container`.
 
 ## Dependencies

@@ -1,10 +1,26 @@
 defmodule ElixirBench.Runner.ConfigTest do
   use ExUnit.Case, async: true
-  import ElixirBench.Runner.Config
+  alias ElixirBench.Runner.Config
 
-  @repo_slug_fixture "elixir-ecto/ecto"
-  @branch_fixture "mm/benches"
-  @commit_fixture "207b2a0fb5407b7162a454a12bacf8f1a4c962c0"
+  describe "from_string_map/1" do
+    test "return config struct given map attrs" do
+      attrs = %{
+        "elixir_version" => "1.6.6",
+        "erlang_version" => "20.1.2",
+        "environment_variables" => %{"MYSQL_URL" => "root@localhost"},
+        "deps" => %{
+          "docker" => [%{"container_name" => "postgres", "image" => "postgres:9.6.6-alpine"}]
+        }
+      }
 
-  @tag requires_internet_connection: true
+      config = Config.from_string_map(attrs)
+
+      assert %{
+               elixir_version: "1.6.6",
+               erlang_version: "20.1.2",
+               environment_variables: %{"MYSQL_URL" => "root@localhost"},
+               deps: [%{"container_name" => "postgres", "image" => "postgres:9.6.6-alpine"}]
+             } = config
+    end
+  end
 end
